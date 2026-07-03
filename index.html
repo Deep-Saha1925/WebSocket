@@ -9,7 +9,14 @@
     <h1>Web Socket</h1>
     <script>
         const { port } = window.location
-        const conection = new WebSocket(`ws://localhost:${port}`);
+        const connection = new WebSocket(`ws://localhost:${port}`);
+
+        connection.onopen = () => {
+            console.log('pingg....');
+            connection.onmessage = (message) => {
+                console.log(message);
+            }
+        }
     </script>
 </body>
 </html>
