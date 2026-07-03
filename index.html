@@ -7,5 +7,9 @@
 </head>
 <body>
     <h1>Web Socket</h1>
+    <script>
+        const { port } = window.location
+        const conection = new WebSocket(`ws://localhost:${port}`);
+    </script>
 </body>
 </html>
