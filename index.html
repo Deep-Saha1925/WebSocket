@@ -22,6 +22,11 @@
         const connection = new WebSocket(`ws://localhost:${port}`);
 
         connection.onopen = () => {
+
+            connection.onmessage = (message) => {
+                console.log(message)
+            }
+
             messageSendBtn.addEventListener('click', (e) => {
                 const value = messageInput.value;
                 connection.send(JSON.stringify({message: value}));

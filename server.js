@@ -18,9 +18,11 @@ wsServer.on('connection', (websocket) => {
     websocket.on('message', (message) => {
         console.log(message.toString());
 
-        websocket.send(message.toString());
-    })
-})
+        wsServer.clients.forEach((client) => {
+            client.send(message.toString())
+        })
+    });
+});
 
 
 httpServer.listen(PORT, () => {
