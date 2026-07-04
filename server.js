@@ -9,7 +9,7 @@ const PORT = process.env.PORT ?? 8000;
 const REDIS_CHANNEL = 'ws-messages';
 
 const httpServer = http.createServer(async function (req, res) {
-    const indexFile = fs.readFile(path.resolve('./index.html'), 'utf-8');
+    const indexFile = await fs.readFile(path.resolve('./index.html'), 'utf-8');
     res.setHeader('Content-Type', 'text/html');
     return res.end(indexFile);
 });
