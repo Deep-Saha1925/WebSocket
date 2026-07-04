@@ -24,7 +24,15 @@
         connection.onopen = () => {
 
             connection.onmessage = (message) => {
-                console.log(message)
+                console.log(message);
+
+                const rawData = message.data
+                const parsedData = JSON.parse(rawData);
+                const text = parsedData.message
+
+                const li = document.createElement('li');
+                li.innerText = text
+                messagesContainer.appendChild(li);
             }
 
             messageSendBtn.addEventListener('click', (e) => {
