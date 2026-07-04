@@ -18,7 +18,7 @@ wsServer.on('connection', (websocket) => {
     websocket.on('message', (message) => {
         console.log(message.toString());
 
-        websocket.send("PONG....Hello from server");
+        websocket.send(message.toString());
     })
 })
 
