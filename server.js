@@ -16,6 +16,15 @@ const httpServer = http.createServer(async function (req, res) {
 
 const wsServer = new WebSocketServer({server: httpServer});
 
+redisSubscribe.subscribe(REDIS_CHANNEL);
+redisSubscribe.on('message', (channel, message) => {
+    if(channel === REDIS_CHANNEL){
+        wsServer.clients.forEach(client => {
+            client.send(message.toString());
+        });
+    }
+});
+
 wsServer.on('connection', (websocket) => {
     console.log(`Websocket Connection...`);
     websocket.on('message', async (message) => {
